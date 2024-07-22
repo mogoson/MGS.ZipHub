@@ -1,0 +1,7 @@
+{
+    "description": "Zipper base on Ionic.Zip.",
+    "displayName": "Zipper",
+    "name": "com.mgs.zipper",
+    "unity": "2021.3",
+    "version": "1.0.0"
+}
