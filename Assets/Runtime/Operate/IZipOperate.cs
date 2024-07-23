@@ -23,8 +23,6 @@ namespace MGS.Zip
 
         Exception Error { get; }
 
-        event Action<float> OnProgress;
-
         event Action<T, Exception> OnComplete;
 
         IEnumerator ExecuteAsync();

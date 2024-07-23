@@ -10,7 +10,6 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -27,15 +26,15 @@ namespace MGS.Zip
             Handler = handlerGo.AddComponent<Zipper>();
         }
 
-        public IZipOperate<string> Zip(IEnumerable<string> entries, string destFile,
-            Encoding encoding, string directoryPathInArchive = null, bool clearBefor = true)
+        public IZipOperate<string> ZipAsync(string sourceDir, string destFile,
+            Encoding encoding, bool includeBaseDirectory = true, bool clearBefor = true)
         {
-            var requester = new DoZipOperate(entries, destFile, encoding, directoryPathInArchive, clearBefor);
+            var requester = new DoZipOperate(sourceDir, destFile, encoding, includeBaseDirectory, clearBefor);
             StartCoroutine(requester.ExecuteAsync());
             return requester;
         }
 
-        public IZipOperate<string> Unzip(string filePath, string destDir, bool clearBefor = true)
+        public IZipOperate<string> UnzipAsync(string filePath, string destDir, bool clearBefor = true)
         {
             var requester = new UnZipOperate(filePath, destDir, clearBefor);
             StartCoroutine(requester.ExecuteAsync());

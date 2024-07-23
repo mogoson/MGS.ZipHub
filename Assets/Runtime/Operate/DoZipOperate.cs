@@ -10,28 +10,27 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
-using Ionic.Zip;
 
 namespace MGS.Zip
 {
     public class DoZipOperate : ZipOperate<string>
     {
-        protected IEnumerable<string> entries;
+        protected string sourceDir;
         protected string destFile;
         protected Encoding encoding;
-        protected string directoryPathInArchive = null;
-        protected bool clearBefor = true;
+        protected bool includeBaseDirectory;
+        protected bool clearBefor;
 
-        public DoZipOperate(IEnumerable<string> entries, string destFile, Encoding encoding,
-            string directoryPathInArchive = null, bool clearBefor = true)
+        public DoZipOperate(string sourceDir, string destFile, Encoding encoding,
+            bool includeBaseDirectory = true, bool clearBefor = true)
         {
-            this.entries = entries;
+            this.sourceDir = sourceDir;
             this.destFile = destFile;
             this.encoding = encoding;
-            this.directoryPathInArchive = directoryPathInArchive;
+            this.includeBaseDirectory = includeBaseDirectory;
             this.clearBefor = clearBefor;
         }
 
@@ -42,24 +41,7 @@ namespace MGS.Zip
                 File.Delete(destFile);
             }
 
-            using (var zipFile = new ZipFile(destFile, encoding))
-            {
-                zipFile.SaveProgress += (s, e) =>
-                {
-                    if (e == null || e.EntriesTotal == 0)
-                    {
-                        return;
-                    }
-
-                    progress = (float)e.EntriesSaved / e.EntriesTotal;
-                };
-
-                foreach (var entry in entries)
-                {
-                    zipFile.AddItem(entry, directoryPathInArchive);
-                }
-                zipFile.Save();
-            }
+            ZipFile.CreateFromDirectory(sourceDir, destFile, CompressionLevel.Optimal, includeBaseDirectory, encoding);
             return destFile;
         }
     }

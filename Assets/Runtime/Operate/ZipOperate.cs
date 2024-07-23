@@ -24,7 +24,6 @@ namespace MGS.Zip
 
         public Exception Error { protected set; get; }
 
-        public event Action<float> OnProgress;
         public event Action<T, Exception> OnComplete;
 
         protected Thread thread;
@@ -38,14 +37,8 @@ namespace MGS.Zip
                 thread = new Thread(Execute) { IsBackground = true };
                 thread.Start();
 
-                var progress = this.progress;
                 while (!IsDone)
                 {
-                    if (progress != this.progress)
-                    {
-                        progress = this.progress;
-                        OnProgress?.Invoke(progress);
-                    }
                     yield return null;
                 }
                 OnComplete?.Invoke(Result, Error);

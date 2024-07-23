@@ -10,16 +10,15 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
-using System.Collections.Generic;
 using System.Text;
 
 namespace MGS.Zip
 {
     public interface IZipper
     {
-        IZipOperate<string> Zip(IEnumerable<string> entries, string destFile, Encoding encoding,
-            string directoryPathInArchive = null, bool clearBefor = true);
+        IZipOperate<string> ZipAsync(string sourceDir, string destFile,
+            Encoding encoding, bool includeBaseDirectory = true, bool clearBefor = true);
 
-        IZipOperate<string> Unzip(string filePath, string destDir, bool clearBefor = true);
+        IZipOperate<string> UnzipAsync(string filePath, string destDir, bool clearBefor = true);
     }
 }

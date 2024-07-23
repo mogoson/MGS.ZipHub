@@ -11,7 +11,7 @@
  *************************************************************************/
 
 using System.IO;
-using Ionic.Zip;
+using System.IO.Compression;
 
 namespace MGS.Zip
 {
@@ -38,19 +38,7 @@ namespace MGS.Zip
                 }
             }
 
-            using (var zipFile = new ZipFile(filePath))
-            {
-                zipFile.ExtractProgress += (s, e) =>
-                {
-                    if (e == null || e.EntriesTotal == 0)
-                    {
-                        return;
-                    }
-
-                    progress = (float)e.EntriesExtracted / e.EntriesTotal;
-                };
-                zipFile.ExtractAll(destDir, ExtractExistingFileAction.OverwriteSilently);
-            }
+            ZipFile.ExtractToDirectory(filePath, destDir);
             return destDir;
         }
     }
