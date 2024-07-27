@@ -15,18 +15,21 @@ using System.Collections;
 
 namespace MGS.Zip
 {
-    public interface IZipOperate<T>
+    public interface IZipOperate
     {
         bool IsDone { get; }
 
-        T Result { get; }
-
         Exception Error { get; }
-
-        event Action<T, Exception> OnComplete;
 
         IEnumerator ExecuteAsync();
 
         void AbortAsync();
+    }
+
+    public interface IZipOperate<T> : IZipOperate
+    {
+        T Result { get; }
+
+        event Action<T, Exception> OnComplete;
     }
 }

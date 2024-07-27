@@ -20,5 +20,9 @@ namespace MGS.Zip
             Encoding encoding, bool includeBaseDirectory = true, bool clearBefor = true);
 
         IZipOperate<string> UnzipAsync(string filePath, string destDir, bool clearBefor = true);
+
+        void AbortAsync(IZipOperate requester);
+
+        void AbortAll();
     }
 }
