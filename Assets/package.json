@@ -1,7 +1,24 @@
 {
-    "description": "Zipper base on Ionic.Zip.",
-    "displayName": "Zipper",
-    "name": "com.mgs.zipper",
+    "name": "com.mgs.ziphub",
+    "version": "1.0.0",
+    "displayName": "Zip Hub",
+    "description": "Hub to manage zip and unzip.",
     "unity": "2021.3",
-    "version": "1.0.0"
+    "keywords": [
+        "zip",
+        "unzip",
+        "async"
+    ],
+    "author": {
+        "name": "Mogoson",
+        "email": "mogoson@outlook.com",
+        "url": "https://github.com/mogoson"
+    },
+    "samples": [
+        {
+            "displayName": "Sample",
+            "description": "Sample for Hub to manage zip and unzip.",
+            "path": "Samples~/Sample"
+        }
+    ]
 }

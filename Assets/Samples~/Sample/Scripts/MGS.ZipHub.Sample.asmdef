@@ -1,0 +1,17 @@
+{
+    "name": "MGS.ZipHub.Sample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6a91fda4489ba114a9843bee9d40b437",
+        "GUID:586dd2f55b142a246812ab8fd8cbbc7e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

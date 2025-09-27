@@ -1,5 +1,5 @@
-/*************************************************************************
- *  Copyright (C) 2024 Mogoson. All rights reserved.
+﻿/*************************************************************************
+ *  Copyright © 2024 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  DoZipOperate.cs
  *  Description  :  Null.
@@ -16,7 +16,7 @@ using System.Text;
 
 namespace MGS.Zip
 {
-    public class DoZipOperate : ZipOperate<string>
+    public class DoZipOperate : ZipOperate
     {
         protected string sourceDir;
         protected string destFile;

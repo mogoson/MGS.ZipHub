@@ -1,5 +1,5 @@
-/*************************************************************************
- *  Copyright (C) 2024 Mogoson. All rights reserved.
+﻿/*************************************************************************
+ *  Copyright © 2024 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  UnZipOperate.cs
  *  Description  :  Null.
@@ -15,7 +15,7 @@ using System.IO.Compression;
 
 namespace MGS.Zip
 {
-    public class UnZipOperate : ZipOperate<string>
+    public class UnZipOperate : ZipOperate
     {
         protected string filePath;
         protected string destDir;

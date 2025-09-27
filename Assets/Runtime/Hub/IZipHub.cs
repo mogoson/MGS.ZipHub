@@ -1,7 +1,7 @@
 ﻿/*************************************************************************
  *  Copyright © 2024 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  IZipOperate.cs
+ *  File         :  IZipHub.cs
  *  Description  :  Null.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
@@ -10,9 +10,18 @@
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System.Text;
 using MGS.Operate;
 
 namespace MGS.Zip
 {
-    public interface IZipOperate : IAsyncOperate<string> { }
+    public interface IZipHub
+    {
+        IAsyncOperateHub AsyncHub { get; }
+
+        IZipOperate ZipAsync(string sourceDir, string destFile,
+            Encoding encoding, bool includeBaseDirectory = true, bool clearBefor = true);
+
+        IZipOperate UnzipAsync(string filePath, string destDir, bool clearBefor = true);
+    }
 }
