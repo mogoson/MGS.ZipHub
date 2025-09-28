@@ -12,7 +12,7 @@
 
 using MGS.Operate;
 
-namespace MGS.Zip
+namespace MGS.Zip.Sample
 {
     public sealed class Global
     {

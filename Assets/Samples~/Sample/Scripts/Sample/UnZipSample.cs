@@ -14,7 +14,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MGS.Zip
+namespace MGS.Zip.Sample
 {
     public class UnZipSample : MonoBehaviour
     {
@@ -51,7 +51,7 @@ namespace MGS.Zip
             var unzipDirPath = $"{Environment.CurrentDirectory}/TestDir/{unzipDirName}";
 
             var handler = Global.ZipHub.UnzipAsync(filePath, unzipDirPath, true);
-            handler.OnProgressChanged += progress =>
+            handler.OnProgressed += progress =>
             {
                 sbar_Progress.size = progress;
             };

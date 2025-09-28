@@ -15,7 +15,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MGS.Zip
+namespace MGS.Zip.Sample
 {
     public class ZipSample : MonoBehaviour
     {
@@ -52,7 +52,7 @@ namespace MGS.Zip
             var zipFile = $"{Environment.CurrentDirectory}/TestDir/{zipName}";
 
             var handler = Global.ZipHub.ZipAsync(filePath, zipFile, Encoding.UTF8, true);
-            handler.OnProgressChanged += progress =>
+            handler.OnProgressed += progress =>
             {
                 sbar_Progress.size = progress;
             };
