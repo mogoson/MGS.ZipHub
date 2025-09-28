@@ -38,5 +38,10 @@ namespace MGS.Zip
             AsyncHub.Enqueue(operate);
             return operate;
         }
+
+        public void AbortAsync(IZipOperate operate)
+        {
+            AsyncHub.Dequeue(operate);
+        }
     }
 }
