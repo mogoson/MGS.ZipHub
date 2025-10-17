@@ -21,7 +21,7 @@ namespace MGS.Zip.Sample
         static Global()
         {
             var asyncHub = new AsyncOperateHub();       //Execute immediately
-            //var asyncHub = new AsyncOperateHubPro();  //Concurrent scheduling
+            //var asyncHub = new AsyncOperateHubPro();  //Manage parallely
             ZipHub = new ZipHub(asyncHub);
         }
     }

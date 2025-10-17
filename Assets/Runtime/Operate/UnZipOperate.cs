@@ -6,12 +6,12 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0.0
- *  Date         :  2024/7/22
+ *  Date         :  2024/7/21
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using System.IO;
-using System.IO.Compression;
+using Ionic.Zip;
 
 namespace MGS.Zip
 {
@@ -38,7 +38,19 @@ namespace MGS.Zip
                 }
             }
 
-            ZipFile.ExtractToDirectory(filePath, destDir);
+            using (var zipFile = new ZipFile(filePath))
+            {
+                zipFile.ExtractProgress += (s, e) =>
+                {
+                    if (e == null || e.EntriesTotal == 0)
+                    {
+                        return;
+                    }
+
+                    Progress = (float)e.EntriesExtracted / e.EntriesTotal;
+                };
+                zipFile.ExtractAll(destDir, ExtractExistingFileAction.OverwriteSilently);
+            }
             return destDir;
         }
     }

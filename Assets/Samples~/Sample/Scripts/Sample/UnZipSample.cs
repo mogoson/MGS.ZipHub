@@ -1,12 +1,12 @@
 ﻿/*************************************************************************
- *  Copyright © 2025 Mogoson All rights reserved.
+ *  Copyright © 2021 Mogoson. All rights reserved.
  *------------------------------------------------------------------------
  *  File         :  UnZipSample.cs
- *  Description  :  Default.
+ *  Description  :  Null.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
- *  Version      :  1.0.0
- *  Date         :  09/26/2025
+ *  Version      :  0.1.0
+ *  Date         :  6/5/2021
  *  Description  :  Initial development version.
  *************************************************************************/
 
@@ -57,7 +57,6 @@ namespace MGS.Zip.Sample
             };
             handler.OnCompleted += (info, error) =>
             {
-                sbar_Progress.size = 1.0f;
                 if (error == null)
                 {
                     Debug.Log(info);

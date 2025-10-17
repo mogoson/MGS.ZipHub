@@ -6,10 +6,11 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0.0
- *  Date         :  2024/7/22
+ *  Date         :  2024/7/21
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System.Collections.Generic;
 using System.Text;
 using MGS.Operate;
 
@@ -19,8 +20,8 @@ namespace MGS.Zip
     {
         IAsyncOperateHub AsyncHub { get; }
 
-        IZipOperate ZipAsync(string sourceDir, string destFile,
-            Encoding encoding, bool includeBaseDirectory = true, bool clearBefor = true);
+        IZipOperate ZipAsync(IEnumerable<string> entries, string destFile, Encoding encoding,
+            string directoryPathInArchive = null, bool clearBefor = true);
 
         IZipOperate UnzipAsync(string filePath, string destDir, bool clearBefor = true);
 

@@ -6,31 +6,32 @@
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0.0
- *  Date         :  2024/7/22
+ *  Date         :  2024/7/21
  *  Description  :  Initial development version.
  *************************************************************************/
 
+using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Text;
+using Ionic.Zip;
 
 namespace MGS.Zip
 {
     public class DoZipOperate : ZipOperate
     {
-        protected string sourceDir;
+        protected IEnumerable<string> entries;
         protected string destFile;
         protected Encoding encoding;
-        protected bool includeBaseDirectory;
-        protected bool clearBefor;
+        protected string directoryPathInArchive = null;
+        protected bool clearBefor = true;
 
-        public DoZipOperate(string sourceDir, string destFile, Encoding encoding,
-            bool includeBaseDirectory = true, bool clearBefor = true)
+        public DoZipOperate(IEnumerable<string> entries, string destFile, Encoding encoding,
+            string directoryPathInArchive = null, bool clearBefor = true)
         {
-            this.sourceDir = sourceDir;
+            this.entries = entries;
             this.destFile = destFile;
             this.encoding = encoding;
-            this.includeBaseDirectory = includeBaseDirectory;
+            this.directoryPathInArchive = directoryPathInArchive;
             this.clearBefor = clearBefor;
         }
 
@@ -41,7 +42,24 @@ namespace MGS.Zip
                 File.Delete(destFile);
             }
 
-            ZipFile.CreateFromDirectory(sourceDir, destFile, CompressionLevel.Optimal, includeBaseDirectory, encoding);
+            using (var zipFile = new ZipFile(destFile, encoding))
+            {
+                zipFile.SaveProgress += (s, e) =>
+                {
+                    if (e == null || e.EntriesTotal == 0)
+                    {
+                        return;
+                    }
+
+                    Progress = (float)e.EntriesSaved / e.EntriesTotal;
+                };
+
+                foreach (var entry in entries)
+                {
+                    zipFile.AddItem(entry, directoryPathInArchive);
+                }
+                zipFile.Save();
+            }
             return destFile;
         }
     }
