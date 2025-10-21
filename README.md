@@ -3,12 +3,12 @@
 # MGS.ZipHub
 
 ## Summary
-- Hub to manage zip and unzip.
+- Zip and Unzip file.
 
 
 ## Ability
-- Compress entrie[file or directorie] to dest file.
-- Decompress file to dest dir.
+- Zip entrie(file or directorie) to dest file.
+- Unzip file to dest dir.
 
 ## Install
 
